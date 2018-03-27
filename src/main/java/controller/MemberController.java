@@ -1,5 +1,6 @@
 package controller;
 
+import exceptions.InvalidDataException;
 import repository.MemberRepository;
 
 import model.Member;
@@ -24,7 +25,11 @@ public class MemberController {
     }
     
     public void addMember(Member aMemebr) {
-        mr.addMember(aMemebr);    	
+        try {
+            mr.addMember(aMemebr);
+        } catch (InvalidDataException e) {
+            e.printStackTrace();
+        }
     }
 
     public void addEntry(Entry oneEntry) {

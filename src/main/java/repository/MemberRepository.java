@@ -1,5 +1,6 @@
 package repository;
 
+import exceptions.InvalidDataException;
 import model.Entry;
 import model.Member;
 
@@ -57,9 +58,12 @@ public class MemberRepository {
         }
     }
 
-    public void addMember(Member m) {
+    public void addMember(Member m)
+            throws InvalidDataException {
+        if (m == null) {
+             throw new InvalidDataException("Memeber must not be null");
 
-        members.add(m);
+        } members.add(m);
     }
 
     public void addEntry(Entry e) {
