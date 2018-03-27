@@ -93,7 +93,6 @@ public class MemberRepositoryTest {
         } catch (InvalidDataException e) {
             assertTrue(false);
         }
-
     }
 
     @Test
