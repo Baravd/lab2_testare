@@ -3,6 +3,7 @@ package repository;
 import exceptions.InvalidDataException;
 import model.Community;
 import model.Contribution;
+import model.Entry;
 import model.Member;
 import org.junit.Before;
 import org.junit.Test;
@@ -120,6 +121,24 @@ public class MemberRepositoryTest {
         } catch (InvalidDataException e) {
             assertTrue(true);
         }
+    }
+
+    @Test
+    public void addNullEntryTest() {
+        Entry e = null;
+        memberRepository.addEntry(e);
+        assertTrue(false);
+    }
+
+    @Test
+    public void addValidEntry() {
+        int initialSize = memberRepository.getAllEntries().size();
+        initialSize++;
+        Member m = new Member("name", "1");
+        Entry e = new Entry("cost", 200, "1");
+        memberRepository.addEntry(e);
+        int size = memberRepository.getAllEntries().size();
+        assertTrue(size == initialSize);
     }
 
 

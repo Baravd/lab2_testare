@@ -3,10 +3,10 @@ package model;
 public class Entry {	
 	private int value;
 	private String typeEntry;//cost or income
-	private int idMember;
+	private String idMember;
 	
 	
-	public Entry(String typeEntry, int value,int idM){
+	public Entry(String typeEntry, int value,String idM){
 		this.typeEntry=typeEntry;
 		this.value=value;
 		this.idMember=idM;
@@ -26,13 +26,23 @@ public class Entry {
 	public int getValue() {
 		return value;
 	}
-	public void setMember(int newMember) {
-		this.idMember= newMember;
+
+	public String getTypeEntry() {
+		return typeEntry;
 	}
 
-	public int getIdMember() {
+	public void setTypeEntry(String typeEntry) {
+		this.typeEntry = typeEntry;
+	}
+
+	public String getIdMember() {
 		return idMember;
 	}
+
+	public void setIdMember(String idMember) {
+		this.idMember = idMember;
+	}
+
 	public String toString() {
 		String e=" idM=" +this.idMember+" " + this.typeEntry + " " + this.value;
 		return e;   

@@ -61,7 +61,7 @@ public class MemberRepository {
             while ((currentLineEntry = bufferedReaderEntry.readLine()) != null) {
                 String line[] = currentLineEntry.split(";");
                 int valueEntry = Integer.parseInt(line[1]);
-                int idEntryMember = Integer.parseInt(line[2]);
+                String idEntryMember = line[2];
                 Entry e = new Entry(line[0], valueEntry, idEntryMember);
                 this.entries.add(e);
             }
