@@ -150,10 +150,23 @@ public class MemberRepositoryTest {
 
     }
     @Test
-    public void addEntryWithInvalidCost() {
+    public void addEntryWithInvalidValue() {
 
         Member m = new Member("name", "1");
         Entry e = new Entry("cost", 0, "1");
+        try {
+            memberRepository.addEntry(e);
+            fail();
+        } catch (InvalidDataException e1) {
+            e1.printStackTrace();
+        }
+
+    }
+    @Test
+    public void addEntryWithNoValue() {
+
+        Member m = new Member("name", "1");
+        Entry e = new Entry("cost", null, "1");
         try {
             memberRepository.addEntry(e);
             fail();

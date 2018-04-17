@@ -6,7 +6,7 @@ public class Entry {
 	private String idMember;
 	
 	
-	public Entry(String typeEntry, int value,String idM){
+	public Entry(String typeEntry, Integer value,String idM){
 		this.typeEntry=typeEntry;
 		this.value=value;
 		this.idMember=idM;
