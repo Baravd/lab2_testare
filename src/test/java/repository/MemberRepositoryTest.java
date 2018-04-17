@@ -163,10 +163,12 @@ public class MemberRepositoryTest {
 
     }
     @Test
-    public void addEntryWithNoCost() {
+    public void addEntryWithNoValue() {
+
+
 
         Member m = new Member("name", "1");
-        Entry e = new Entry(null, 200, "1");
+        Entry e = new Entry("cost", null, "1");
         try {
             memberRepository.addEntry(e);
             fail();
