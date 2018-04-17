@@ -23,7 +23,7 @@ public class Entry {
 		this.value = newValue;
 	}
 
-	public int getValue() {
+	public Integer getValue() {
 		return value;
 	}
 

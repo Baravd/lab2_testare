@@ -1,6 +1,7 @@
 package ui;
 
 import controller.MemberController;
+import exceptions.InvalidDataException;
 import model.Entry;
 import model.Member;
 
@@ -80,7 +81,11 @@ public class MemberUI {
                 String idInt = idS;
 
                 Entry e = new Entry(type, valueInt, idInt);
-                ctrl.addEntry(e);
+                try {
+                    ctrl.addEntry(e);
+                } catch (InvalidDataException e1) {
+                    e1.printStackTrace();
+                }
 
             }
             if (cmd == 3) {

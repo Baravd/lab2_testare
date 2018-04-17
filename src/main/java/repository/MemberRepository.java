@@ -79,8 +79,22 @@ public class MemberRepository {
         members.add(m);
     }
 
-    public void addEntry(Entry e) {
-        entries.add(e);
+    public void addEntry(Entry e)
+            throws InvalidDataException {
+        if (e == null) {//1
+            throw new InvalidDataException("Entry must not be null");//2
+        }
+        if (e.getIdMember() == null) {
+            throw new InvalidDataException("IdMember must not be null");//3
+        }
+        if (e.getValue() == null) {//4
+            throw new InvalidDataException("Value must not be null");//5
+
+        } else if (e.getValue() <= 0) {
+            throw new InvalidDataException("Value must be greater than 0");//6
+
+        }
+        entries.add(e);//7
     }
 
     public List<Entry> getAllEntries() {
@@ -88,7 +102,7 @@ public class MemberRepository {
         return entries;
     }
 
-    public List<Member> getMembers() {
+    List<Member> getMembers() {
         return members;
     }
 

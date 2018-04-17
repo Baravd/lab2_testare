@@ -9,8 +9,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 public class MemberRepositoryTest {
 
@@ -31,7 +31,7 @@ public class MemberRepositoryTest {
         try {
             memberRepository.addMember(new Member("nume", " 1"));
         } catch (InvalidDataException e) {
-            assertFalse(true);
+            fail();
         }
         assertEquals(memberRepository.getMembers().size(), membersCount + 1);
 
@@ -80,10 +80,10 @@ public class MemberRepositoryTest {
             memberRepository.addMember(new Member("nume", "ASD"));
             memberRepository.addMember(new Member("nume", "asd"));
         } catch (InvalidDataException e) {
-            assertTrue(false);
+            fail();
         }
         int newCount = membersCount + 2;
-        assertTrue(memberRepository.getMembers().size() == newCount);
+        assertEquals(memberRepository.getMembers().size(), newCount);
 
     }
 
@@ -92,7 +92,7 @@ public class MemberRepositoryTest {
         try {
             community.addMember(new Member("asd", "321"), new Contribution(10));
         } catch (InvalidDataException e) {
-            assertTrue(false);
+            fail();
         }
     }
 
@@ -126,8 +126,12 @@ public class MemberRepositoryTest {
     @Test
     public void addNullEntryTest() {
         Entry e = null;
-        memberRepository.addEntry(e);
-        assertTrue(false);
+        try {
+            memberRepository.addEntry(e);
+            fail();
+        } catch (InvalidDataException e1) {
+            e1.printStackTrace();
+        }
     }
 
     @Test
@@ -136,10 +140,29 @@ public class MemberRepositoryTest {
         initialSize++;
         Member m = new Member("name", "1");
         Entry e = new Entry("cost", 200, "1");
-        memberRepository.addEntry(e);
-        int size = memberRepository.getAllEntries().size();
-        assertTrue(size == initialSize);
+        try {
+            memberRepository.addEntry(e);
+            int size = memberRepository.getAllEntries().size();
+            assertEquals(size, initialSize);
+        } catch (InvalidDataException e1) {
+            e1.printStackTrace();
+        }
+
     }
+    @Test
+    public void addEntryWithInvalidCost() {
+
+        Member m = new Member("name", "1");
+        Entry e = new Entry("cost", 0, "1");
+        try {
+            memberRepository.addEntry(e);
+            fail();
+        } catch (InvalidDataException e1) {
+            e1.printStackTrace();
+        }
+
+    }
+
 
 
 }

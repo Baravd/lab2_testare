@@ -32,7 +32,8 @@ public class MemberController {
         }
     }
 
-    public void addEntry(Entry oneEntry) {
+    public void addEntry(Entry oneEntry)
+            throws InvalidDataException {
         mr.addEntry(oneEntry);    	
     }
 
