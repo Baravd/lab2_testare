@@ -1,7 +1,7 @@
 package model;
 
 public class Entry {	
-	private int value;
+	private Integer value;
 	private String typeEntry;//cost or income
 	private String idMember;
 	
