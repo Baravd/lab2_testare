@@ -178,6 +178,22 @@ public class MemberRepositoryTest {
 
     }
 
+    @Test
+    public void addEntryWithNoMemberID() {
+
+
+
+        Member m = new Member("name", "1");
+        Entry e = new Entry("cost", 200, null);
+        try {
+            memberRepository.addEntry(e);
+            fail();
+        } catch (InvalidDataException e1) {
+            e1.printStackTrace();
+        }
+
+    }
+
 
 
 }
