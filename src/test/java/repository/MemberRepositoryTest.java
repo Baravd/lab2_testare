@@ -8,7 +8,10 @@ import model.Member;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -149,6 +152,7 @@ public class MemberRepositoryTest {
         }
 
     }
+
     @Test
     public void addEntryWithInvalidValue() {
 
@@ -162,9 +166,9 @@ public class MemberRepositoryTest {
         }
 
     }
+
     @Test
     public void addEntryWithNoValue() {
-
 
 
         Member m = new Member("name", "1");
@@ -182,7 +186,6 @@ public class MemberRepositoryTest {
     public void addEntryWithNoMemberID() {
 
 
-
         Member m = new Member("name", "1");
         Entry e = new Entry("cost", 200, null);
         try {
@@ -194,6 +197,41 @@ public class MemberRepositoryTest {
 
     }
 
+    @Test
+    public void getEntryForAMember() {
+        String id = "1";
+        Entry e = new Entry("cost", 200, id);
+        try {
+            memberRepository.addEntry(e);
+            List<Entry> entryForMember = memberRepository.getEntryForMember(id);
+            assertSame(entryForMember.get(0), e);
+        } catch (InvalidDataException e1) {
+            e1.printStackTrace();
+        }
+
+
+    }
+
+    //Integration
+
+    @Test
+    public void integrateAddMemberEntryGet() {
+        String id = "1";
+        Member m = new Member("name", id);
+        Entry e = new Entry("cost", 200, id);
+
+        try {
+            memberRepository.addMember(m);
+            memberRepository.addEntry(e);
+            List<Entry> entryForMember = memberRepository.getEntryForMember(id);
+            assertSame(entryForMember.get(0), e);
+
+
+        } catch (InvalidDataException exp) {
+            fail();
+        }
+
+    }
 
 
 }

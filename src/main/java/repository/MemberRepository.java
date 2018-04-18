@@ -102,6 +102,18 @@ public class MemberRepository {
         return entries;
     }
 
+    public  List<Entry> getEntryForMember(String idM) {
+        List<Entry> ent = new ArrayList<>();
+
+        for(Entry entry : entries) {
+            if(entry.getIdMember().equals(idM)) {
+                ent.add(entry);
+            }
+
+        }
+        return ent;
+    }
+
     List<Member> getMembers() {
         return members;
     }
